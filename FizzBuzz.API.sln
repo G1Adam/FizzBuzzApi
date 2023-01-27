@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.Api", "FizzBuzz.API\FizzBuzz.Api.csproj", "{2C34FA0B-84EA-4A6A-B00A-491DC9396920}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BBE55F8E-10E4-42D9-AF24-63C8F2CE338C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A6C2DCD9-67EE-4200-8055-C59925B85ABC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.Api.Tests", "FizzBuzz.Api.Tests\FizzBuzz.Api.Tests.csproj", "{99FB1A7E-5D52-4497-8087-D4D1EAE88E01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C34FA0B-84EA-4A6A-B00A-491DC9396920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C34FA0B-84EA-4A6A-B00A-491DC9396920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C34FA0B-84EA-4A6A-B00A-491DC9396920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C34FA0B-84EA-4A6A-B00A-491DC9396920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99FB1A7E-5D52-4497-8087-D4D1EAE88E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FB1A7E-5D52-4497-8087-D4D1EAE88E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FB1A7E-5D52-4497-8087-D4D1EAE88E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FB1A7E-5D52-4497-8087-D4D1EAE88E01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C34FA0B-84EA-4A6A-B00A-491DC9396920} = {A6C2DCD9-67EE-4200-8055-C59925B85ABC}
+		{99FB1A7E-5D52-4497-8087-D4D1EAE88E01} = {BBE55F8E-10E4-42D9-AF24-63C8F2CE338C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E06D8859-7785-4225-918A-B88E6661E5A5}
+	EndGlobalSection
+EndGlobal
