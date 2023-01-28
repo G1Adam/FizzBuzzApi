@@ -1,4 +1,5 @@
 ﻿using FizzBuzz.Api.Calculators;
+using FizzBuzz.Api.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -8,6 +9,7 @@ namespace FizzBuzz.Api.Endpoints
     {
         private readonly ICalculator fizzBuzzCalculator;
         private readonly IMemoryCache memoryCache;
+        private readonly IFizzBuzzRepository fizzBuzzRepository;
 
         public FizzBuzzEndpoint(ICalculator fizzBuzzCalculator, IMemoryCache memoryCache)
         {
@@ -22,7 +24,14 @@ namespace FizzBuzz.Api.Endpoints
                 return TypedResults.Ok(cacheResult);
             }
 
-            //Check Database
+            var model = await fizzBuzzRepository.GetFizzBuzzModelById(input);
+
+            if(model is not null)
+            {
+                memoryCache.Set(input, model.Result);
+
+                return TypedResults.Ok(model.Result);
+            }
 
             var result = await fizzBuzzCalculator.Calculate(input);
 
