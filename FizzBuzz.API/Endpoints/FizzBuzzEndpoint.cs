@@ -36,7 +36,7 @@ namespace FizzBuzz.Api.Endpoints
 
             var result = await fizzBuzzCalculator.Calculate(input);
 
-            //add to repository
+            await fizzBuzzRepository.InsertFizzBuzzModel(new Models.FizzBuzzModel { Input = input, Result = result });
 
             memoryCache.Set(input, result);
 

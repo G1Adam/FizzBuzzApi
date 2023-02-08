@@ -13,6 +13,11 @@ namespace FizzBuzz.Api.Repositories
             this.fizzBuzzContext = fizzBuzzContext;
         }
 
+        public async Task InsertFizzBuzzModel(FizzBuzzModel model)
+        {
+            await fizzBuzzContext.FizzBuzzCollection.InsertOneAsync(model);
+        }
+
         public async Task<FizzBuzzModel> GetFizzBuzzModelById(int input)
         {
             return await fizzBuzzContext.FizzBuzzCollection.Find(c => c.Input == input).FirstOrDefaultAsync();
