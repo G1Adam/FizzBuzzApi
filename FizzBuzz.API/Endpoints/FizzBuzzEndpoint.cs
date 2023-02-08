@@ -11,10 +11,11 @@ namespace FizzBuzz.Api.Endpoints
         private readonly IMemoryCache memoryCache;
         private readonly IFizzBuzzRepository fizzBuzzRepository;
 
-        public FizzBuzzEndpoint(ICalculator fizzBuzzCalculator, IMemoryCache memoryCache)
+        public FizzBuzzEndpoint(ICalculator fizzBuzzCalculator, IMemoryCache memoryCache, IFizzBuzzRepository fizzBuzzRepository)
         {
             this.fizzBuzzCalculator = fizzBuzzCalculator;
             this.memoryCache = memoryCache;
+            this.fizzBuzzRepository = fizzBuzzRepository;
         }
 
         internal async Task<Ok<string>> GetFizzBuzz(int input)
@@ -34,6 +35,8 @@ namespace FizzBuzz.Api.Endpoints
             }
 
             var result = await fizzBuzzCalculator.Calculate(input);
+
+            //add to repository
 
             memoryCache.Set(input, result);
 
