@@ -15,7 +15,8 @@ var app = builder.Build();
 app.MapGet("/",
     (
         [FromServices] FizzBuzzEndpoint fizzBuzzEndpoint
-    ) => fizzBuzzEndpoint.GetFizzBuzz).WithOpenApi();
+    ) => fizzBuzzEndpoint.GetFizzBuzz)
+    .WithOpenApi();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
