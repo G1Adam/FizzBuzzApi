@@ -1,4 +1,6 @@
+using FizzBuzz.Api.Endpoints;
 using FizzBuzz.Api.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +10,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterFizzBuzzServices();
 
-//register FizzBuzzEndpoint and get dependencies
-//Map Endpoint
-
 var app = builder.Build();
+
+app.MapGet("/",
+    (
+        [FromServices] FizzBuzzEndpoint fizzBuzzEndpoint
+    ) => fizzBuzzEndpoint.GetFizzBuzz).WithOpenApi();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
