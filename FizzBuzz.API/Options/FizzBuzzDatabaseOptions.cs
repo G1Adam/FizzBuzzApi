@@ -1,5 +1,8 @@
-﻿namespace FizzBuzz.Api.Options
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace FizzBuzz.Api.Options
 {
+    [ExcludeFromCodeCoverage]
     public class FizzBuzzDatabaseOptions
     {
         const string sections = "FizzBuzzDatabase";
