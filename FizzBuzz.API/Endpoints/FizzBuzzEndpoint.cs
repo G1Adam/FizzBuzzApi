@@ -1,24 +1,21 @@
 ﻿using FizzBuzz.Api.Calculators;
+using FizzBuzz.Api.Models;
 using FizzBuzz.Api.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace FizzBuzz.Api.Endpoints
 {
-    public class FizzBuzzEndpoint
+    public static class FizzBuzzEndpoint
     {
-        private readonly ICalculator fizzBuzzCalculator;
-        private readonly IMemoryCache memoryCache;
-        private readonly IFizzBuzzRepository fizzBuzzRepository;
-
-        public FizzBuzzEndpoint(ICalculator fizzBuzzCalculator, IMemoryCache memoryCache, IFizzBuzzRepository fizzBuzzRepository)
+        public static WebApplication MapFizzBuzzEndpoint(this WebApplication webApplication)
         {
-            this.fizzBuzzCalculator = fizzBuzzCalculator;
-            this.memoryCache = memoryCache;
-            this.fizzBuzzRepository = fizzBuzzRepository;
+            webApplication.MapGet("/", GetFizzBuzz).WithOpenApi();
+
+            return webApplication;
         }
 
-        internal async Task<Ok<string>> GetFizzBuzz(int input)
+        internal static async Task<Ok<string>> GetFizzBuzz(int input, ICalculator fizzBuzzCalculator, IMemoryCache memoryCache, IFizzBuzzRepository fizzBuzzRepository)
         {
             if (memoryCache.TryGetValue(input, out string cacheResult))
             {
@@ -27,7 +24,7 @@ namespace FizzBuzz.Api.Endpoints
 
             var model = await fizzBuzzRepository.GetFizzBuzzModelById(input);
 
-            if(model is not null)
+            if (model is not null)
             {
                 memoryCache.Set(input, model.Result);
 
@@ -36,7 +33,7 @@ namespace FizzBuzz.Api.Endpoints
 
             var result = await fizzBuzzCalculator.Calculate(input);
 
-            await fizzBuzzRepository.InsertFizzBuzzModel(new Models.FizzBuzzModel { Input = input, Result = result });
+            await fizzBuzzRepository.InsertFizzBuzzModel(new FizzBuzzModel { Input = input, Result = result });
 
             memoryCache.Set(input, result);
 

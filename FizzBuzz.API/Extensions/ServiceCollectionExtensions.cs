@@ -15,7 +15,7 @@ namespace FizzBuzz.Api.Extensions
             services.AddScoped<IFizzBuzzContext, FizzBuzzContext>();
             services.AddScoped<IFizzBuzzRepository, FizzBuzzRepository>();
             services.AddSingleton<ICalculator, FizzBuzzCalculator>();
-            services.AddSingleton<IMemoryCache, MemoryCache>();
+            services.AddMemoryCache();
 
             return services;
         }

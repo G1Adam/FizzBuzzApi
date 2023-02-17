@@ -1,8 +1,10 @@
 using FizzBuzz.Api.Endpoints;
 using FizzBuzz.Api.Extensions;
-using Microsoft.AspNetCore.Mvc;
+using FizzBuzz.Api.Options;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<FizzBuzzDatabaseOptions>(builder.Configuration.GetSection(nameof(FizzBuzzDatabaseOptions)));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -12,11 +14,7 @@ builder.Services.RegisterFizzBuzzServices();
 
 var app = builder.Build();
 
-app.MapGet("/",
-    (
-        [FromServices] FizzBuzzEndpoint fizzBuzzEndpoint
-    ) => fizzBuzzEndpoint.GetFizzBuzz)
-    .WithOpenApi();
+app.MapFizzBuzzEndpoint();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
